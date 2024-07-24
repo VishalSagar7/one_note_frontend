@@ -72,7 +72,7 @@ const NewDiaryPage = () => {
     const { values, handleChange, handleSubmit, handleBlur, errors, touched, resetForm } = Formik;
 
     return (
-        <div className='w-full h-[200vh] bg-gray-300 ' style={{ backgroundImage: `url(${homebg})` }}>
+        <div className='w-full h-[200vh] bg-gray-300 ' >
             <Navbar />
 
             <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
@@ -83,7 +83,7 @@ const NewDiaryPage = () => {
 
             <form
                 onSubmit={handleSubmit}
-                className=' w-[90%] lg:w-[70%] h-auto bg-gray-200 rounded mt-[50px] mx-auto p-[20px] relative font-roboto'
+                className=' w-[93%] lg:w-[70%] h-auto bg-transparent rounded pt-[150px] mx-auto relative font-roboto'
             >
                 <Tooltip title = 'Save'>
                     <button
@@ -95,10 +95,10 @@ const NewDiaryPage = () => {
                 </Tooltip>
 
                 <div>
-                    <h1 className='text-md text-sky-700 font-cursive font-semibold'>Select Date</h1>
                     <input
                         type='date'
-                        className='text-lg text-gray-700 font-medium px-[8px] py-[4px] rounded mt-[5px] cursor-pointer outline-none hover:ring-[1px] hover:ring-sky-400 focus:ring-[1px] focus:ring-sky-600'
+                        placeholder='Date'
+                        className='text-lg text-gray-700 font-medium px-[8px] py-[4px] rounded mt-[10px] cursor-pointer outline-none hover:ring-[1px] hover:ring-sky-400 focus:ring-[1px] focus:ring-sky-600'
                         name='date'
                         value={values.date}
                         onChange={handleChange}
@@ -108,10 +108,10 @@ const NewDiaryPage = () => {
                 </div>
 
                 <div className='mt-[10px] w-full'>
-                    <h1 className='text-md text-sky-700 font-cursive font-semibold'>Write a title</h1>
                     <input
                         type='text'
-                        className='w-full border pl-[10px] text-lg font-medium mt-[5px] h-[40px] cursor-pointer outline-none hover:ring-[1px] hover:ring-sky-400 focus:ring-[1px] focus:ring-sky-600 rounded'
+                        placeholder='Title'
+                        className='w-full border pl-[10px] text-lg font-medium mt-[15px] h-[40px] cursor-pointer outline-none hover:ring-[1px] hover:ring-sky-400 focus:ring-[1px] focus:ring-sky-600 rounded'
                         name='title'
                         value={values.title}
                         onChange={handleChange}
@@ -121,11 +121,10 @@ const NewDiaryPage = () => {
                 </div>
 
                 <div className='mt-[10px] w-full'>
-                    <h1 className='text-md text-sky-700 font-cursive font-semibold'>Write your note</h1>
                     {errors.content && touched.content ? <p className="text-sm text-red-500">{errors.content}</p> : null}
                     <textarea
                         ref={textareaRef}
-                        className='w-full border h-auto whitespace-pre-wrap overflow-hidden p-[10px] mt-[5px] cursor-pointer outline-none hover:ring-[1px] hover:ring-sky-400 focus:ring-[1px] focus:ring-sky-600 rounded'
+                        className='w-full border h-auto whitespace-pre-wrap overflow-hidden p-[10px] mt-[15px] cursor-pointer outline-none hover:ring-[1px] hover:ring-sky-400 focus:ring-[1px] focus:ring-sky-600 rounded break-words'
                         name='content'
                         value={values.content}
                         onChange={handleChange}
