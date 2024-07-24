@@ -56,14 +56,13 @@ const LoginPage = () => {
     })
 
     return (
-        <div className='h-[100vh] w-[100vw] bg-gray-200 flex'>
+        <div className='h-[100vh] w-[100vw] bg-gray-200 flex lg:justify-center lg:items-center'>
 
-            <div className='w-full h-full bg-gray-200 flex justify-center items-center'
-            style={{backgroundImage : `url(${newbg})`}}
+            <div className='w-full h-full bg-gray-200 flex lg:justify-center lg:items-center'
             >
 
                 <form 
-                    className='w-[85%] lg:w-[30%] h-[auto] py-[20px] border shadow-md flex flex-col rounded px-[15px] bg-white'
+                    className='w-full lg:w-[30%] h-[auto] py-[30px] border shadow-md flex flex-col rounded px-[20px] bg-white pt-[70px] lg:pt-[20px]'
                     onSubmit={(e)=>handleSubmit(e)}
                 >
                     <h1 className='inline-block text-xl font-semibold text-blue-500'>Login</h1>

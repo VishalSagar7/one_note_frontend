@@ -20,14 +20,14 @@ const Navbar = () => {
   })
 
   return (
-    <div className='w-full h-[80px] bg-sky-800 flex justify-between items-center px-[30px] lg:px-[250px]'>
-      <h1 className='text-lg text-white font-semibold font-cursive'>{userInfo.name} 📝</h1>
+    <div className='w-full h-[80px] bg-sky-500 flex justify-between items-center px-[25px] lg:px-[200px] fixed top-0 z-10'>
+      <h1 className='text-xl text-white font-semibold '>{userInfo.name} 📝</h1>
 
 
       <div className='h-full text-white flex items-center'>
 
         <div className='h-full text-white flex items-center'>
-          <Link to={"/home"}><h1 className='text-lg font-semibold font-cursive hover:text-gray-200'>Home</h1></Link>
+          <Link to={"/home"}><h1 className='text-xl font-semibold hover:text-gray-200'>Home</h1></Link>
         </div>
 
         <Tooltip title ="profile">

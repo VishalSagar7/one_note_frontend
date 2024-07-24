@@ -95,10 +95,12 @@ const IndividualStoryComponent = () => {
 
 
   return (
-    <div className='min-h-[100vh] w-full bg-sky bg-gray-200 pb-[100px] font-roboto' style={{ backgroundImage: `url(${homebg})` }}>
-      <Navbar />
+    <>
+    <Navbar/>
+    <div className='min-h-[100vh] w-full bg-sky bg-gray-200 pb-[100px] font-roboto'>
 
-      <div className='bg-white h-auto rounded w-[90%] lg:w-[70%] mx-auto mt-[40px] p-[25px] mb-[100px]'>
+      <div className='bg-white h-auto rounded w-full lg:w-[70%] mx-auto mt-[100px] p-[15px] lg:p-[25px] mb-[100px]'>
+
 
         {contentData ? (
           contentData === null ? (
@@ -115,12 +117,12 @@ const IndividualStoryComponent = () => {
                 </Tooltip>
               </div>
 
-              <div className='my-[15px] bg-sky-100 text-right px-[10px] rounded'>
-                <h1 className='text-lg font-medium inline-block text-sky-700 pl-[10px]'>{contentData.date}</h1>
+              <div className='my-[15px] text-right px-[10px] rounded'>
+                <h1 className='lg:text-lg font-medium inline-block text-sky-700 pl-[10px]'>{contentData.date}</h1>
               </div>
 
               <div className='mt-[10px]'>
-                <pre className='text-xl leading-[22px] text-gray-700 whitespace-pre-wrap '>
+                <pre className='text-xl leading-[22px] text-gray-700 whitespace-pre-wrap break-words '>
                   {contentData.content}
                 </pre>
               </div>
@@ -174,6 +176,7 @@ const IndividualStoryComponent = () => {
 
       </div>
     </div>
+    </>
   );
 };
 

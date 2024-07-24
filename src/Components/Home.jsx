@@ -6,6 +6,7 @@ import Journal from './Journal'
 import homebg from "../assets/homebg.jpeg"
 
 
+
 const Home = () => {
 
   const navigate = useNavigate()
@@ -21,7 +22,7 @@ const Home = () => {
   })
 
   return (
-    <div className=' bg-gray-200 min-h-[120vh] pb-[100px] overflow-auto' style={{backgroundImage : `url(${homebg})`}} >
+    <div className=' bg-gray-200 min-h-[120vh] pb-[100px] overflow-auto' >
       <Navbar/>
       <Journal/>
     </div>

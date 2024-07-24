@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import CreateIcon from '@mui/icons-material/Create';
 import Button from '@mui/material/Button';
 import { BASE_URL } from '../helper';
+import Tooltip from '@mui/material/Tooltip';
 
 const Journal = () => {
   const [stories, setStories] = useState([]);
@@ -44,33 +45,33 @@ const Journal = () => {
   );
 
   return (
-    <div className='h-auto w-[95%] lg:w-[70%] bg-transparent rounded mx-auto mt-[30px] p-[25px] pb-[50px]'>
+    <div className='h-auto w-full lg:w-[80%] bg-transparent rounded mx-auto mt-[100px] p-[10px]  lg:p-[25px] pb-[50px] relative'>
 
-      <div className='flex justify-between'>
+      <div className='flex justify-between w-full'>
 
         <input
           type="text"
           placeholder='Search by title or date'
-          className='h-[50px] w-[70%] lg:w-[950px] rounded outline-none border-none text-lg placeholder:pl-[10px] pl-[10px]'
+          className='h-[50px] w-full rounded-md mx-auto outline-none border-none text-lg placeholder:pl-[10px] pl-[10px]'
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
         />
 
 
-        <button 
+        <Tooltip title = 'new note'>
+          <button 
             onClick={() => navigate('/newdiarypage')}
-            className='bg-sky-600 text-lg px-[10px] py-[2px] lg:text-xl lg:px-[20px] flex items-center text-white rounded hover:bg-sky-700'
-            >
-          create 
-          <CreateIcon sx={{
-            fontSize : '20px',
-            marginLeft : '10px'
-          }}/>
-        </button>
+            className='bg-sky-500 h-[50px] w-[50px] shadow-md text-lg px-[10px] fixed right-[25px] bottom-[100px] lg:right-[180px] lg:bottom-[120px] py-[2px] lg:text-xl lg:px-[20px] flex items-center justify-center text-white rounded-full hover:bg-sky-700'
+          >
+            <CreateIcon sx={{
+              fontSize: '30px',
+            }} />
+          </button>
+        </Tooltip>
 
       </div>
 
-      <div className='w-full p-[12px] h-auto mt-[40px] flex flex-col gap-[10px]' style={{background : 'rgba(0,0,0,0.4)'}}>
+      <div className='w-full h-auto mt-[30px] flex flex-col gap-[10px]'>
 
 
         {filteredStories.length === 0 ? (
@@ -84,9 +85,9 @@ const Journal = () => {
 
             <Link to={`/individualstory/${story.id}`} key={idx}>
 
-              <div className='h-[60px] w-full bg-white p-[10px] rounded cursor-pointer shadow font-roboto pl-[20px] hover:bg-gray-100 flex items-center'>
-                <h1 className='text-sky-700 text-md font-semibold'>{story.date}</h1>
-                <h1 className='text-xl font-roboto font-medium text-gray-700 ml-[20px]'>{story.title}</h1>
+              <div className='auto py-[20px] w-full bg-white p-[10px] rounded cursor-pointer shadow font-roboto pl-[20px] hover:bg-gray-100 lg:flex items-center'>
+                <h1 className='text-sky-700 text-sm lg:text-md lg:font-semibold'>{story.date}</h1>
+                <h1 className=' text-lg font-medium lg:text-xl font-roboto lg:font-medium text-gray-700 lg:ml-[20px]'>{story.title}</h1>
               </div>
 
             </Link>
