@@ -132,7 +132,7 @@ const IndividualStoryComponent = () => {
                 </div>
 
 
-                <div className='mt-[40px] font-semibold h-[25px] w-full bg-sky-100 rounded flex justify-end items-center pr-[20px]'>
+                <div className='mt-[40px] font-semibold h-[25px] w-full rounded flex justify-end items-center pr-[20px]'>
                   <span className=' text-gray-600 ml-auto text-sm font-cursive'>{userInfo.name}</span>
                 </div>
 
