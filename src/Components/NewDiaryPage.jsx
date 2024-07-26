@@ -22,6 +22,7 @@ const NewDiaryPage = () => {
     const [open, setOpen] = React.useState(false);
     const userInfo = useSelector(store => store.user.userData);
     const { email } = userInfo;
+    const navigate = useNavigate();
 
     const Formik = useFormik({
         initialValues: InitialValues,
@@ -51,6 +52,13 @@ const NewDiaryPage = () => {
             }
         }
     });
+
+    useEffect(() => {
+        if (!userInfo) {
+          navigate('/');
+        }
+      }, []);
+
 
 
     useEffect(() => {

@@ -6,6 +6,9 @@ import signupbg from '../assets/loginsignupbg.jpg'
 import { useNavigate } from "react-router-dom";
 import newbg from '../assets/homebg.jpeg'
 import { BASE_URL } from "../helper";
+import { useEffect } from "react";
+import { removeUser } from "../redux/actions";
+import {useDispatch} from 'react-redux'
 
 const initialValues = {
     name: '',
@@ -20,6 +23,8 @@ const initialValues = {
 const SignupPage = () => {
 
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
 
     const formik = useFormik({
         initialValues: initialValues,
@@ -44,6 +49,10 @@ const SignupPage = () => {
     });
 
     const { values, handleChange, handleSubmit, handleBlur, errors, touched } = formik;
+
+    useEffect(() => {
+        dispatch(removeUser())
+    })
 
     return (
         <div className='h-[100vh] w-[100vw] bg-gray-200 flex'>
