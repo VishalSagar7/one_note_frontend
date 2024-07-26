@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CreateIcon from '@mui/icons-material/Create';
-import Button from '@mui/material/Button';
 import { BASE_URL } from '../helper';
 import Tooltip from '@mui/material/Tooltip';
 import Backdrop from '@mui/material/Backdrop';
@@ -12,7 +11,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 const Journal = () => {
   const [stories, setStories] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [loading, setLoading] = useState(false); // State to manage loading
+  const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
   const userInfo = useSelector(store => store.user.userData);
   const { email } = userInfo;

@@ -16,8 +16,6 @@ import Home from '@mui/icons-material/Home';
 import { useNavigate } from 'react-router-dom';
 import Tooltip from '@mui/material/Tooltip';
 import { BASE_URL } from '../helper';
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
 
 
 const IndividualStoryComponent = () => {
@@ -29,12 +27,10 @@ const IndividualStoryComponent = () => {
   const [contentData, setContentData] = useState({});
   const [dialogOpen, setDialogOpen] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
-  const [loading, setLoading] = useState(false); // State to manage loading
 
 
   useEffect(() => {
     const fetchContentData = async () => {
-      setLoading(true); 
       try {
         const response = await fetch(`${BASE_URL}/api/records/${id}`, {
           method: 'POST',
@@ -51,7 +47,6 @@ const IndividualStoryComponent = () => {
         const result = await response.json();
         if (result.diaryEntry) {
           setContentData(result.diaryEntry);
-          setLoading(false)
         } else {
           setContentData(null);
         }
@@ -72,13 +67,6 @@ const IndividualStoryComponent = () => {
   const handleDialogClose = () => {
     setDialogOpen(false);
   };
-
-  useEffect(() => {
-    if (!userInfo) {
-      navigate('/');
-    }
-  }, []);
-
 
   const handleConfirmDelete = async () => {
     try {
@@ -114,14 +102,6 @@ const IndividualStoryComponent = () => {
       <div className='min-h-[100vh] w-full bg-sky bg-gray-200 pb-[100px] font-roboto pt-[130px]'>
 
 
-      <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={loading} 
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
-
-
 
         <div className='bg-white h-auto rounded w-full lg:w-[70%] mx-auto  p-[15px] lg:p-[25px] mb-[100px] '>
 
@@ -142,7 +122,7 @@ const IndividualStoryComponent = () => {
                 </div>
 
                 <div className='my-[15px] text-right px-[10px] rounded'>
-                  <h1 className='lg:text-sm font-medium inline-block text-sky-700 pl-[10px]'>{contentData.date}</h1>
+                  <h1 className='lg:text-lg font-medium inline-block text-sky-700 pl-[10px]'>{contentData.date}</h1>
                 </div>
 
                 <div className='mt-[10px]'>
