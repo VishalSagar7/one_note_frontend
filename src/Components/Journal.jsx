@@ -12,7 +12,9 @@ const Journal = () => {
   const [stories, setStories] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false); 
+
   const navigate = useNavigate();
+
   const userInfo = useSelector(store => store.user.userData);
   const { email } = userInfo;
 
@@ -31,6 +33,8 @@ const Journal = () => {
         if (response.ok) {
           const data = await response.json();
           setStories(data.diaryContent);
+          
+          console.log(data.diaryContent);
         } else {
           console.error('Failed to fetch:', response.statusText);
         }
