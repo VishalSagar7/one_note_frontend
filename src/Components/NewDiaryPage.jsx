@@ -10,6 +10,23 @@ import homebg from "../assets/homebg.jpeg";
 import SaveIcon from '@mui/icons-material/Save';
 import Tooltip from '@mui/material/Tooltip';
 import { BASE_URL } from '../helper';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';  // Make sure to include the CSS
+
+const modules = {
+    toolbar: [
+        [{ font: [] }],
+        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+        ["bold", "italic", "underline", "strike"],
+        [{ color: [] }, { background: [] }],
+        [{ script: "sub" }, { script: "super" }],
+        ["blockquote", "code-block"],
+        [{ list: "ordered" }, { list: "bullet" }],
+        [{ indent: "-1" }, { indent: "+1" }, { align: [] }],
+        ["link", "image", "video"],
+        ["clean"],
+    ]
+};
 
 const InitialValues = {
     date: '',
@@ -42,7 +59,7 @@ const NewDiaryPage = () => {
                 const result = await response.json();
                 if (response.ok) {
                     setOpen(true);
-                    resetForm();
+                    // resetForm();
                 } else {
                     console.log('Failed to submit story: ' + result.message);
                 }
@@ -55,20 +72,9 @@ const NewDiaryPage = () => {
 
     useEffect(() => {
         if (!userInfo) {
-          navigate('/');
+            navigate('/');
         }
-      }, []);
-
-
-
-    useEffect(() => {
-        const textarea = textareaRef.current;
-        if (textarea) {
-            textarea.style.height = '50vh';
-            textarea.style.height = `${textarea.scrollHeight}px`;
-        }
-    }, [Formik.values.content]);
-
+    }, [userInfo, navigate]);
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -77,10 +83,10 @@ const NewDiaryPage = () => {
         setOpen(false);
     };
 
-    const { values, handleChange, handleSubmit, handleBlur, errors, touched, resetForm } = Formik;
+    const { values, handleChange, handleSubmit, handleBlur, errors, touched, setFieldValue } = Formik;
 
     return (
-        <div className='w-full h-[200vh] bg-gray-300 ' >
+        <div className='w-full h-[200vh] bg-gray-300 '>
             <Navbar />
 
             <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
@@ -93,12 +99,12 @@ const NewDiaryPage = () => {
                 onSubmit={handleSubmit}
                 className=' w-[93%] lg:w-[70%] h-auto bg-transparent rounded pt-[150px] mx-auto relative font-roboto'
             >
-                <Tooltip title = 'Save'>
+                <Tooltip title='Save'>
                     <button
                         type='submit'
                         className='absolute flex items-center font-cursive font-semibold text-white text-lg bg-sky-500 hover:bg-sky-600 px-[10px] py-[5px] rounded right-[20px]'
                     >
-                        <SaveIcon sx={{}} />
+                        <SaveIcon />
                     </button>
                 </Tooltip>
 
@@ -130,13 +136,13 @@ const NewDiaryPage = () => {
 
                 <div className='mt-[10px] w-full'>
                     {errors.content && touched.content ? <p className="text-sm text-red-500">{errors.content}</p> : null}
-                    <textarea
+                    <ReactQuill
+            
                         ref={textareaRef}
-                        className='w-full border h-auto whitespace-pre-wrap overflow-hidden p-[10px] mt-[15px] cursor-pointer outline-none hover:ring-[1px] hover:ring-sky-400 focus:ring-[1px] focus:ring-sky-600 rounded break-words'
-                        name='content'
+                        modules={modules}
+                        className='w-full bg-white border h-auto whitespace-pre-wrap overflow-hidden p-[10px] mt-[15px] cursor-pointer outline-none hover:ring-[1px] hover:ring-sky-400 focus:ring-[1px] focus:ring-sky-600 rounded break-words'
                         value={values.content}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
+                        onChange={(content) => setFieldValue('content', content)}
                         style={{ resize: 'none' }}
                     />
                 </div>

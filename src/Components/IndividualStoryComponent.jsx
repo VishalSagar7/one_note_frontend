@@ -126,9 +126,7 @@ const IndividualStoryComponent = () => {
                 </div>
 
                 <div className='mt-[10px]'>
-                  <pre className='text-xl leading-[22px] text-gray-700 whitespace-pre-wrap break-words '>
-                    {contentData.content}
-                  </pre>
+                  <div className='text-lg' dangerouslySetInnerHTML={{ __html: contentData.content }} />
                 </div>
 
 
